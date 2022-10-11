@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <title>OS Visilization</title>
+  </head>
+  <body onload="myFunction()">
+    <div id="particles-js"></div>
+    <script type="text/javascript" src="particles.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <h1 id="primary-heading">CPU Scheduling Algorithms</h1>
+    <div id="loader"></div>
+    <main
+      class="main-content animate-bottom lds-hourglass"
+      style="display: none"
+      id="myDiv"
+    >
+      <nav>
+        <ul>
+          <li><a href="#fcfs">First Come first Serve(FCFS)</a></li>
+          <li>
+            <a href="#priority-preemptive">Priority Scheduling(preemptive)</a>
+          </li>
+          <li>
+            <a href="#priority-non-preemptive"
+              >Priority Scheduling(non-preemptive)</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div id="algos">
+        <section class="sub-algos" id="fcfs">
+          <div class="fcfs-main">
+            <div class="inputs">
+              <input
+                type="text"
+                placeholder="Arival Time"
+                class="arival fcfs-arival"
+              />
+              <input
+                type="text"
+                placeholder="Burst Time"
+                class="burst fcfs-burst"
+              />
+              <button class="fcfs-btn btn">RUN</button>
+            </div>
+            <div class="output-area hide">
+              <div class="table-chart">
+                <table class="table-theory">
+                  <thead>
+                    <tr>
+                      <th>Job</th>
+                      <th>Arrival Time</th>
+                      <th>Burst Time</th>
+                      <th>Finish Time</th>
+                      <th>Turn Around Time</th>
+                      <th>Waiting Time</th>
+                    </tr>
+                  </thead>
+                  <tbody class="tbody"></tbody>
+                </table>
+              </div>
+              <div class="gantt-chart transition">
+                <table>
+                  <tr class="chart-row"></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="sub-algos" id="priority-preemptive">
+          <div class="priority-preemptive-main">
+            <input type="text" placeholder="Arival Time" class="pp-arrival" />
+            <input type="text" placeholder="Burst Time" class="pp-burst" />
+            <input type="text" placeholder="Priority" class="pp-priority" />
+            <button class="btn" id="pp-btn">RUN</button>
+            <div class="output-area-ppm hide-ppm">
+              <div class="table-chart-ppm">
+                <table class="table-theory-ppm">
+                  <thead>
+                    <tr>
+                      <th>Job</th>
+                      <th>Arrival Time</th>
+                      <th>Burst Time</th>
+                      <th>Finish Time</th>
+                      <th>Turn Around Time</th>
+                      <th>Waiting Time</th>
+                    </tr>
+                  </thead>
+                  <tbody class="tbody-ppm"></tbody>
+                </table>
+              </div>
+              <div class="gantt-chart-ppm transition-ppm">
+                <table>
+                  <tr class="chart-row-ppm"></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="sub-algos" id="priority-non-preemptive">
+          <div class="priority-non-preemptive-main">
+            <input type="text" placeholder="Arival Time" class="npp-arrival" />
+            <input type="text" placeholder="Burst Time" class="npp-burst" />
+            <input type="text" placeholder="Priority" class="npp-priority" />
+            <button class="btn" id="npp-btn">RUN</button>
+            <div class="output-area-nppm hide-nppm">
+              <div class="table-chart-nppm">
+                <table class="table-theory-nppm">
+                  <thead>
+                    <tr>
+                      <th>Job</th>
+                      <th>Arrival Time</th>
+                      <th>Burst Time</th>
+                      <th>Finish Time</th>
+                      <th>Turn Around Time</th>
+                      <th>Waiting Time</th>
+                    </tr>
+                  </thead>
+                  <tbody class="tbody-nppm"></tbody>
+                </table>
+              </div>
+              <div class="gantt-chart-nppm transition-nppm">
+                <table>
+                  <tr class="chart-row-nppm"></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>
