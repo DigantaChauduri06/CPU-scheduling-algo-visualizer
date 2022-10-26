@@ -4,8 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
     <title>OS Visilization</title>
   </head>
   <body onload="myFunction()">
@@ -34,6 +45,7 @@
       </nav>
       <div id="algos">
         <section class="sub-algos" id="fcfs">
+          <h2 class="hide-heading secondry-heading">First Come First Serve</h2>
           <div class="fcfs-main">
             <div class="inputs">
               <input
@@ -50,19 +62,29 @@
             </div>
             <div class="output-area hide">
               <div class="table-chart">
-                <table class="table-theory">
+                <table class="table table-hover table-dark table-theory">
                   <thead>
                     <tr>
-                      <th>Job</th>
-                      <th>Arrival Time</th>
-                      <th>Burst Time</th>
-                      <th>Finish Time</th>
-                      <th>Turn Around Time</th>
-                      <th>Waiting Time</th>
+                      <th scope="col">Job</th>
+                      <th scope="col">Arrival Time</th>
+                      <th scope="col">Burst Time</th>
+                      <th scope="col">Finish Time</th>
+                      <th scope="col">Turn Around Time</th>
+                      <th scope="col">Waiting Time</th>
                     </tr>
                   </thead>
                   <tbody class="tbody"></tbody>
                 </table>
+                <button id="myBtn" class="btn btn-white myBtn-fcfs">
+                  Detailed Solution
+                </button>
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modal-content" id="modal-content-fcfs">
+                    <span class="close">&times;</span>
+                  </div>
+                </div>
               </div>
               <div class="gantt-chart transition">
                 <table>
@@ -74,21 +96,24 @@
         </section>
         <section class="sub-algos" id="priority-preemptive">
           <div class="priority-preemptive-main">
+            <h2 class="hide-heading secondry-heading">
+              Priority Scheduling(preemptive)
+            </h2>
             <input type="text" placeholder="Arival Time" class="pp-arrival" />
             <input type="text" placeholder="Burst Time" class="pp-burst" />
             <input type="text" placeholder="Priority" class="pp-priority" />
             <button class="btn" id="pp-btn">RUN</button>
             <div class="output-area-ppm hide-ppm">
               <div class="table-chart-ppm">
-                <table class="table-theory-ppm">
+                <table class="table table-hover table-theory-ppm">
                   <thead>
                     <tr>
-                      <th>Job</th>
-                      <th>Arrival Time</th>
-                      <th>Burst Time</th>
-                      <th>Finish Time</th>
-                      <th>Turn Around Time</th>
-                      <th>Waiting Time</th>
+                      <th scope="col">Job</th>
+                      <th scope="col">Arrival Time</th>
+                      <th scope="col">Burst Time</th>
+                      <th scope="col">Finish Time</th>
+                      <th scope="col">Turn Around Time</th>
+                      <th scope="col">Waiting Time</th>
                     </tr>
                   </thead>
                   <tbody class="tbody-ppm"></tbody>
@@ -98,31 +123,54 @@
                 <table>
                   <tr class="chart-row-ppm"></tr>
                 </table>
+                <button id="myBtn" class="btn btn-white myBtn-ppm">
+                  Detailed Solution
+                </button>
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modal-content" id="modal-content-ppm">
+                    <span class="close">&times;</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
         <section class="sub-algos" id="priority-non-preemptive">
           <div class="priority-non-preemptive-main">
+            <h2 class="hide-heading secondry-heading">
+              Priority Scheduling(non-preemptive)
+            </h2>
             <input type="text" placeholder="Arival Time" class="npp-arrival" />
             <input type="text" placeholder="Burst Time" class="npp-burst" />
             <input type="text" placeholder="Priority" class="npp-priority" />
             <button class="btn" id="npp-btn">RUN</button>
             <div class="output-area-nppm hide-nppm">
               <div class="table-chart-nppm">
-                <table class="table-theory-nppm">
+                <table class="table table-hover table-theory-nppm">
                   <thead>
                     <tr>
-                      <th>Job</th>
-                      <th>Arrival Time</th>
-                      <th>Burst Time</th>
-                      <th>Finish Time</th>
-                      <th>Turn Around Time</th>
-                      <th>Waiting Time</th>
+                      <th scope="col">Job</th>
+                      <th scope="col">Arrival Time</th>
+                      <th scope="col">Burst Time</th>
+                      <th scope="col">Finish Time</th>
+                      <th scope="col">Turn Around Time</th>
+                      <th scope="col">Waiting Time</th>
                     </tr>
                   </thead>
                   <tbody class="tbody-nppm"></tbody>
                 </table>
+                <button id="myBtn" class="btn btn-white myBtn-nppm">
+                  Detailed Solution
+                </button>
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modal-content" id="modal-content-nppm">
+                    <span class="close">&times;</span>
+                  </div>
+                </div>
               </div>
               <div class="gantt-chart-nppm transition-nppm">
                 <table>

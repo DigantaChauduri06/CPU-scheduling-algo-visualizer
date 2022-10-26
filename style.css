@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
 :root {
   --primary-color: #ddd;
   --secondery-color: rgb(176, 176, 16);
@@ -21,7 +22,7 @@ body {
     #161f2065,
     #19241f79,
     #23271c70
-  ); */
+    ); */
   background-image: radial-gradient(
     circle,
     #051f4f,
@@ -31,11 +32,14 @@ body {
     #183b7e
   );
 }
-#particles-js{
+#particles-js {
   position: fixed;
   height: 100%;
   width: 100%;
   z-index: -1;
+}
+p {
+  margin: 30px;
 }
 ul {
   list-style: none;
@@ -96,7 +100,7 @@ section {
 * {
   margin: 0;
   padding: 0;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 body {
@@ -343,4 +347,102 @@ input {
 #myDiv {
   display: none;
   text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  /* color: #000; */
+  background-color: #040cec;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+#myBtn {
+  margin-top: 45px;
+}
+
+.btn-white {
+  background-color: #1690e1;
+}
+.hide-heading {
+  display: none;
+}
+/* Media query */
+/* smartphones, iPhone, portrait 480x320 phones */
+@media (max-width: 481px) {
+  body {
+    overflow-x: hidden;
+  }
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+  #primary-heading {
+    font-size: 2.3rem;
+  }
+  nav {
+    display: none;
+  }
+  .inputs {
+    margin-right: 30px;
+  }
+  input {
+    margin: 29px 1px;
+    width: 70vw;
+    height: 50px;
+  }
+  .table-theory {
+    padding: 15px;
+  }
+  .table-chart {
+    width: 97vw;
+  }
+  .modal-content {
+    width: 70vw;
+    height: max-content;
+  }
+  .btn {
+    padding: 1em 2.3em;
+    font-size: 1rem;
+    margin-left: 30vw;
+  }
+  .hide-heading {
+    display: block;
+    padding: 30px;
+    font-size: 1.5rem;
+    font-family: "Roboto Mono", monospace;
+    color: #04cdf0;
+  }
+  #algos {
+    margin-left: -2px;
+  }
 }

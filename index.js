@@ -1,9 +1,4 @@
 "use strict";
-/**
- * ! BUGGS
- * ? 1. Continus click of run leads to unexpected value
- * 
- */
 
 // FCFS
 const isAlpha = function (ch) {
@@ -55,9 +50,9 @@ const correctedValue = function (times_arival, times_burst) {
 }
 
 function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
@@ -69,12 +64,14 @@ const FCFS = function () {
     const run = document.querySelector('.fcfs-btn')
     const table_chart_area = document.querySelector('.table-chart')
     const output_area = document.querySelector(".output-area")
-
     let times_arival = []
     let times_burst = []
     let finish_time = []
     let turnaround_time = []
     let waiting_time = []
+
+    let already_clicked = false
+
     run.addEventListener('click', () => {
         times_arival = arivalTimeInput.value.trim().split(" ").filter((str) => (
             str !== ""
@@ -96,6 +93,16 @@ const FCFS = function () {
         waiting_time = getWaitingTime(turnaround_time, times_burst)
         const len = times_arival.length
         console.log(finish_time);
+
+        if (already_clicked) {
+            alert("You have simulated this once, if you want to use this simulation again you have to reload the page.")
+            if (confirm("Do you want to reload ?")) {
+                location.reload()
+            }
+            return
+        }
+        already_clicked = true;
+
         let tbody = document.querySelector('.tbody')
         for (let i = 0; i < len; i++) {
             const tr = document.createElement('tr')
@@ -113,19 +120,29 @@ const FCFS = function () {
                 if (j === 0)
                     td.innerHTML = String.fromCharCode(65 + id)
                 if (j === 1) {
-                    td.innerHTML = String(times_arival[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(times_arival[id])
+                    }, 100)
                 }
                 if (j === 2) {
-                    td.innerHTML = String(times_burst[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(times_burst[id])
+                    }, 100)
                 }
                 if (j === 3) {
-                    td.innerHTML = String(finish_time[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(finish_time[id])
+                    }, 300)
                 }
                 if (j == 4) {
-                    td.innerHTML = String(turnaround_time[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(turnaround_time[id])
+                    }, 300)
                 }
                 if (j == 5) {
-                    td.innerHTML = String(waiting_time[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(waiting_time[id])
+                    }, len * 403)
                 }
                 cell[id].appendChild(td)
             }
@@ -146,8 +163,36 @@ const FCFS = function () {
             td.innerHTML = String.fromCharCode(65 + i)
             td.style.width = String(times_burst[i] * 50) + "px";
             td.style.backgroundColor = getRandomColor()
-            chart_row.appendChild(td)
+            setTimeout(() => {
+                chart_row.appendChild(td)
+            }, i * 400)
         }
+    })
+    const modal = document.getElementById("modal-content-fcfs")
+    const modalBtn = document.querySelector(".myBtn-fcfs")
+    console.log(modal);
+    modalBtn.addEventListener("click", () => {
+        const hasDel = document.querySelector(".del") !== null
+        if (hasDel) return;
+        const p1 = document.createElement("p")
+        p1.classList.add("del")
+        const p2 = document.createElement("p")
+        p2.classList.add("del")
+        const hr = document.createElement("hr")
+        hr.classList.add("del")
+        p1.innerHTML = `Average <em>turnaround time </em> = (Exit time - Arrival time)`
+        p2.innerHTML = `For example ${finish_time[0]} - ${times_arival[0]} = ${finish_time[0] - times_arival[0]}`
+        modal.appendChild(p1)
+        modal.appendChild(p2)
+        modal.appendChild(hr)
+        const p3 = document.createElement("p")
+        p3.classList.add("del")
+        const p4 = document.createElement("p")
+        p4.classList.add("del")
+        p3.innerHTML = `Average <em>waiting time </em> = (Turnaround time - Burst time)`
+        p4.innerHTML = `For example ${turnaround_time[0]} - ${times_burst[0]} = ${turnaround_time[0] - times_burst[0]}`
+        modal.appendChild(p3)
+        modal.appendChild(p4)
     })
 }
 
@@ -162,6 +207,10 @@ const PriorityScheduling_nonPreemptive = function () {
     let times_arival = []
     let times_priority = []
     let times_burst = []
+    let already_clicked = false
+    let finish_time = []
+    let turnaround_time = []
+    let waiting_time = []
 
     run.addEventListener('click', () => {
         times_arival = arivalTimeInput.value.trim().split(" ").filter((str) => (
@@ -176,6 +225,20 @@ const PriorityScheduling_nonPreemptive = function () {
         times_arival = times_arival.map((item) => Number.parseInt(item))
         times_burst = times_burst.map((item) => Number.parseInt(item))
         times_priority = times_priority.map((item) => Number.parseInt(item))
+        if (checkInput(times_arival) || checkInput(times_burst) || times_arival.length !== times_burst.length || times_arival.length === 0 || times_burst.length === 0) {
+            alert("Invalid Input")
+            arivalTimeInput.value = ""
+            burstTimeInput.value = ""
+            return
+        }
+        if (already_clicked) {
+            alert("You have simulated this once, if you want to use this simulation again you have to reload the page.")
+            if (confirm("Do you want to reload ?")) {
+                location.reload()
+            }
+            return
+        }
+        already_clicked = true;
         const timeInfo = times_arival
             .map((item, index) => {
                 return {
@@ -313,9 +376,6 @@ const PriorityScheduling_nonPreemptive = function () {
 
         times_arival = []
         times_burst = []
-        let finish_time = []
-        let turnaround_time = []
-        let waiting_time = []
         times_arival = solvedtimeInfo.map(item => (
             item.at
         ))
@@ -351,19 +411,29 @@ const PriorityScheduling_nonPreemptive = function () {
                 if (j === 0)
                     td.innerHTML = String.fromCharCode(65 + id)
                 if (j === 1) {
-                    td.innerHTML = String(times_arival[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(times_arival[id])
+                    }, 100)
                 }
                 if (j === 2) {
-                    td.innerHTML = String(times_burst[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(times_burst[id])
+                    }, 100)
                 }
                 if (j === 3) {
-                    td.innerHTML = String(finish_time[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(finish_time[id])
+                    }, 300)
                 }
                 if (j == 4) {
-                    td.innerHTML = String(turnaround_time[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(turnaround_time[id])
+                    }, 300)
                 }
                 if (j == 5) {
-                    td.innerHTML = String(waiting_time[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(waiting_time[id])
+                    }, len * 403)
                 }
                 cell[id].appendChild(td)
             }
@@ -382,8 +452,36 @@ const PriorityScheduling_nonPreemptive = function () {
             td.innerHTML = String.fromCharCode(65 + i)
             td.style.width = String(times_burst[i] * 50) + "px";
             td.style.backgroundColor = getRandomColor()
-            chart_row.appendChild(td)
+            setTimeout(() => {
+                chart_row.appendChild(td)
+            }, i * 400)
         }
+    })
+    const modal = document.getElementById("modal-content-nppm")
+    const modalBtn = document.querySelector(".myBtn-nppm")
+    console.log(modal);
+    modalBtn.addEventListener("click", () => {
+        const hasDel = document.querySelector(".del") !== null
+        if (hasDel) return;
+        const p1 = document.createElement("p")
+        p1.classList.add("del")
+        const p2 = document.createElement("p")
+        p2.classList.add("del")
+        const hr = document.createElement("hr")
+        hr.classList.add("del")
+        p1.innerHTML = `Average <em>turnaround time </em> = (Exit time - Arrival time)`
+        p2.innerHTML = `For example ${finish_time[0]} - ${times_arival[0]} = ${finish_time[0] - times_arival[0]}`
+        modal.appendChild(p1)
+        modal.appendChild(p2)
+        modal.appendChild(hr)
+        const p3 = document.createElement("p")
+        p3.classList.add("del")
+        const p4 = document.createElement("p")
+        p4.classList.add("del")
+        p3.innerHTML = `Average <em>waiting time </em> = (Turnaround time - Burst time)`
+        p4.innerHTML = `For example ${turnaround_time[0]} - ${times_burst[0]} = ${turnaround_time[0] - times_burst[0]}`
+        modal.appendChild(p3)
+        modal.appendChild(p4)
     })
 }
 
@@ -412,6 +510,22 @@ const PriorityScheduling_Preemptive = function () {
         times_burst = times_burst.map((item) => Number.parseInt(item))
         times_priority = times_priority.map((item) => Number.parseInt(item))
 
+        let already_clicked = false
+
+        if (checkInput(times_arival) || checkInput(times_burst) || times_arival.length !== times_burst.length || times_arival.length === 0 || times_burst.length === 0) {
+            alert("Invalid Input")
+            arivalTimeInput.value = ""
+            burstTimeInput.value = ""
+            return
+        }
+        if (already_clicked) {
+            alert("You have simulated this once, if you want to use this simulation again you have to reload the page.")
+            if (confirm("Do you want to reload ?")) {
+                location.reload()
+            }
+            return
+        }
+        already_clicked = true;
         const processesInfo = times_arival
             .map((item, index) => {
                 return {
@@ -625,19 +739,29 @@ const PriorityScheduling_Preemptive = function () {
                 if (j === 0)
                     td.innerHTML = String.fromCharCode(65 + id)
                 if (j === 1) {
-                    td.innerHTML = String(times_arival[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(times_arival[id])
+                    }, 100)
                 }
                 if (j === 2) {
-                    td.innerHTML = String(times_burst[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(times_burst[id])
+                    }, 100)
                 }
                 if (j === 3) {
-                    td.innerHTML = String(finish_time[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(finish_time[id])
+                    }, 300)
                 }
                 if (j == 4) {
-                    td.innerHTML = String(turnaround_time[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(turnaround_time[id])
+                    }, 300)
                 }
                 if (j == 5) {
-                    td.innerHTML = String(waiting_time[id])
+                    setTimeout(() => {
+                        td.innerHTML = String(waiting_time[id])
+                    }, len * 403)
                 }
                 cell[id].appendChild(td)
             }
@@ -656,14 +780,42 @@ const PriorityScheduling_Preemptive = function () {
             td.innerHTML = String.fromCharCode(65 + i)
             td.style.width = String(times_burst[i] * 50) + "px";
             td.style.backgroundColor = getRandomColor()
-            chart_row.appendChild(td)
+            setTimeout(() => {
+                chart_row.appendChild(td)
+            }, i * 400)
         }
 
+    })
+    const modal = document.getElementById("modal-content-fcfs")
+    const modalBtn = document.querySelector(".myBtn-fcfs")
+    console.log(modal);
+    modalBtn.addEventListener("click", () => {
+        const hasDel = document.querySelector(".del") !== null
+        if (hasDel) return;
+        const p1 = document.createElement("p")
+        p1.classList.add("del")
+        const p2 = document.createElement("p")
+        p2.classList.add("del")
+        const hr = document.createElement("hr")
+        hr.classList.add("del")
+        p1.innerHTML = `Average <em>turnaround time </em> = (Exit time - Arrival time)`
+        p2.innerHTML = `For example ${finish_time[0]} - ${times_arival[0]} = ${finish_time[0] - times_arival[0]}`
+        modal.appendChild(p1)
+        modal.appendChild(p2)
+        modal.appendChild(hr)
+        const p3 = document.createElement("p")
+        p3.classList.add("del")
+        const p4 = document.createElement("p")
+        p4.classList.add("del")
+        p3.innerHTML = `Average <em>waiting time </em> = (Turnaround time - Burst time)`
+        p4.innerHTML = `For example ${turnaround_time[0]} - ${times_burst[0]} = ${turnaround_time[0] - times_burst[0]}`
+        modal.appendChild(p3)
+        modal.appendChild(p4)
     })
 }
 
 function myFunction() {
-    const myVar = setTimeout(showPage, 3000);
+    const myconst = setTimeout(showPage, 1300);
 }
 function showPage() {
     document.getElementById("loader").style.display = "none";
@@ -677,3 +829,27 @@ function Main() {
 
 Main()
 
+const modal = document.getElementById("myModal");
+
+const btn = document.getElementById("myBtn");
+
+const span = document.getElementsByClassName("close")[0];
+
+
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+const del = document.querySelectorAll(".del")
+
+span.onclick = function () {
+    modal.style.display = "none";
+    // for (let element of del) {
+    //     element.parentNode.removeChild(element)
+    // }
+}
+
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
