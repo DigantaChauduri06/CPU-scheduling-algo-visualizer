@@ -32,7 +32,49 @@
     >
       <nav>
         <ul>
-          <li><a href="#fcfs">First Come first Serve(FCFS)</a></li>
+          <li>
+            <div class="dropdown fix">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenu2"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Algorithms
+              </button>
+              <ul
+                class="dropdown-menu coustom-menu"
+                aria-labelledby="dropdownMenu2"
+              >
+                <li>
+                  <a class="dropdown-item" type="button" href="#fcfs"
+                    >First Come First Serve</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    type="button"
+                    href="#priority-preemptive"
+                  >
+                    Priority Scheduling(preemptive)
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    type="button"
+                    href="#priority-non-preemptive"
+                  >
+                    Priority Scheduling(non-preemptive)
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <a href="#fcfs">First Come first Serve(FCFS)</a>
+          </li>
+
           <li>
             <a href="#priority-preemptive">Priority Scheduling(preemptive)</a>
           </li>
@@ -50,19 +92,24 @@
             <div class="inputs">
               <input
                 type="text"
-                placeholder="Arival Time"
-                class="arival fcfs-arival"
+                placeholder="Arrival Time eg: 1 2 3 4..."
+                class="arival eg: 10 20 30 40... fcfs-arival"
               />
               <input
                 type="text"
-                placeholder="Burst Time"
-                class="burst fcfs-burst"
+                placeholder="Burst Time eg: 1 2 3 4..."
+                class="fcfs-burst"
               />
               <button class="fcfs-btn btn">RUN</button>
             </div>
             <div class="output-area hide">
+              <div style="margin-top: 30px" class="gantt-chart transition">
+                <table>
+                  <tr class="chart-row"></tr>
+                </table>
+              </div>
               <div class="table-chart">
-                <table class="table table-hover table-dark table-theory">
+                <table class="table table-hover table-theory">
                   <thead>
                     <tr>
                       <th scope="col">Job</th>
@@ -86,11 +133,6 @@
                   </div>
                 </div>
               </div>
-              <div class="gantt-chart transition">
-                <table>
-                  <tr class="chart-row"></tr>
-                </table>
-              </div>
             </div>
           </div>
         </section>
@@ -99,11 +141,31 @@
             <h2 class="hide-heading secondry-heading">
               Priority Scheduling(preemptive)
             </h2>
-            <input type="text" placeholder="Arival Time" class="pp-arrival" />
-            <input type="text" placeholder="Burst Time" class="pp-burst" />
-            <input type="text" placeholder="Priority" class="pp-priority" />
+            <input
+              type="text"
+              placeholder="Arrival Time eg: 1 2 3 4..."
+              class="pp-arrival"
+            />
+            <input
+              type="text"
+              placeholder="Burst Time eg: 1 2 3 4..."
+              class="pp-burst"
+            />
+            <input
+              type="text"
+              placeholder="Priority eg: 10 20 30 40..."
+              class="pp-priority"
+            />
             <button class="btn" id="pp-btn">RUN</button>
             <div class="output-area-ppm hide-ppm">
+              <div
+                style="margin-top: 30px"
+                class="gantt-chart-ppm transition-ppm"
+              >
+                <table>
+                  <tr class="chart-row-ppm"></tr>
+                </table>
+              </div>
               <div class="table-chart-ppm">
                 <table class="table table-hover table-theory-ppm">
                   <thead>
@@ -119,19 +181,14 @@
                   <tbody class="tbody-ppm"></tbody>
                 </table>
               </div>
-              <div class="gantt-chart-ppm transition-ppm">
-                <table>
-                  <tr class="chart-row-ppm"></tr>
-                </table>
-                <button id="myBtn" class="btn btn-white myBtn-ppm">
-                  Detailed Solution
-                </button>
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-                  <!-- Modal content -->
-                  <div class="modal-content" id="modal-content-ppm">
-                    <span class="close">&times;</span>
-                  </div>
+              <button id="myBtn" class="btn btn-white myBtn-ppm">
+                Detailed Solution
+              </button>
+              <!-- The Modal -->
+              <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content" id="modal-content-ppm">
+                  <span class="close">&times;</span>
                 </div>
               </div>
             </div>
@@ -142,12 +199,32 @@
             <h2 class="hide-heading secondry-heading">
               Priority Scheduling(non-preemptive)
             </h2>
-            <input type="text" placeholder="Arival Time" class="npp-arrival" />
-            <input type="text" placeholder="Burst Time" class="npp-burst" />
-            <input type="text" placeholder="Priority" class="npp-priority" />
+            <input
+              type="text"
+              placeholder="Arrival Time eg: 1 2 3 4..."
+              class="npp-arrival"
+            />
+            <input
+              type="text"
+              placeholder="Burst Time eg: 1 2 3 4..."
+              class="npp-burst"
+            />
+            <input
+              type="text"
+              placeholder="Priority eg: 10 20 30 40..."
+              class="npp-priority"
+            />
             <button class="btn" id="npp-btn">RUN</button>
-            <div class="output-area-nppm hide-nppm">
-              <div class="table-chart-nppm">
+            <div
+              style="margin-top: 30px"
+              class="gantt-chart-nppm transition-nppm"
+            >
+              <table>
+                <tr class="chart-row-nppm"></tr>
+              </table>
+            </div>
+            <div class="table-chart-nppm">
+              <div class="output-area-nppm hide-nppm">
                 <table class="table table-hover table-theory-nppm">
                   <thead>
                     <tr>
@@ -171,11 +248,6 @@
                     <span class="close">&times;</span>
                   </div>
                 </div>
-              </div>
-              <div class="gantt-chart-nppm transition-nppm">
-                <table>
-                  <tr class="chart-row-nppm"></tr>
-                </table>
               </div>
             </div>
           </div>

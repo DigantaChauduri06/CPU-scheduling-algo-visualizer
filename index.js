@@ -49,12 +49,10 @@ const correctedValue = function (times_arival, times_burst) {
     }
 }
 
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
+function getRandomColor(i) {
+    const letters = ['#ff6600', '#996600'];
+    let color = i & 1 ? letters[0] : letters[1]
+    console.log(color);
     return color;
 }
 
@@ -142,7 +140,7 @@ const FCFS = function () {
                 if (j == 5) {
                     setTimeout(() => {
                         td.innerHTML = String(waiting_time[id])
-                    }, len * 403)
+                    }, len * 803)
                 }
                 cell[id].appendChild(td)
             }
@@ -162,10 +160,10 @@ const FCFS = function () {
             const td = document.createElement('td')
             td.innerHTML = String.fromCharCode(65 + i)
             td.style.width = String(times_burst[i] * 50) + "px";
-            td.style.backgroundColor = getRandomColor()
+            td.style.backgroundColor = getRandomColor(i)
             setTimeout(() => {
                 chart_row.appendChild(td)
-            }, i * 400)
+            }, i * 800)
         }
     })
     const modal = document.getElementById("modal-content-fcfs")
@@ -433,7 +431,7 @@ const PriorityScheduling_nonPreemptive = function () {
                 if (j == 5) {
                     setTimeout(() => {
                         td.innerHTML = String(waiting_time[id])
-                    }, len * 403)
+                    }, len * 803)
                 }
                 cell[id].appendChild(td)
             }
@@ -451,10 +449,10 @@ const PriorityScheduling_nonPreemptive = function () {
             const td = document.createElement('td')
             td.innerHTML = String.fromCharCode(65 + i)
             td.style.width = String(times_burst[i] * 50) + "px";
-            td.style.backgroundColor = getRandomColor()
+            td.style.backgroundColor = getRandomColor(i)
             setTimeout(() => {
                 chart_row.appendChild(td)
-            }, i * 400)
+            }, i * 800)
         }
     })
     const modal = document.getElementById("modal-content-nppm")
@@ -761,7 +759,7 @@ const PriorityScheduling_Preemptive = function () {
                 if (j == 5) {
                     setTimeout(() => {
                         td.innerHTML = String(waiting_time[id])
-                    }, len * 403)
+                    }, len * 803)
                 }
                 cell[id].appendChild(td)
             }
@@ -779,10 +777,10 @@ const PriorityScheduling_Preemptive = function () {
             const td = document.createElement('td')
             td.innerHTML = String.fromCharCode(65 + i)
             td.style.width = String(times_burst[i] * 50) + "px";
-            td.style.backgroundColor = getRandomColor()
+            td.style.backgroundColor = getRandomColor(i)
             setTimeout(() => {
                 chart_row.appendChild(td)
-            }, i * 400)
+            }, i * 800)
         }
 
     })
