@@ -130,12 +130,12 @@ const FCFS = function () {
                 if (j === 3) {
                     setTimeout(() => {
                         td.innerHTML = String(finish_time[id])
-                    }, 300)
+                    }, 500)
                 }
                 if (j == 4) {
                     setTimeout(() => {
                         td.innerHTML = String(turnaround_time[id])
-                    }, 300)
+                    }, 500)
                 }
                 if (j == 5) {
                     setTimeout(() => {
@@ -156,11 +156,14 @@ const FCFS = function () {
 
         // Gantt Chart Logic
         const chart_row = document.querySelector('.chart-row')
+        const chart_row_op_fcfs = document.querySelector('.chart-row-op-fcfs')
         for (let i = 0; i < len; i++) {
             const td = document.createElement('td')
-            td.innerHTML = String.fromCharCode(65 + i)
+            const span = document.createElement('span')
+            td.innerHTML = `${String.fromCharCode(65 + i)} till ${i === turnaround_time.length - 1 ? finish_time[i] : turnaround_time[i + 1]}`
             td.style.width = String(times_burst[i] * 50) + "px";
             td.style.backgroundColor = getRandomColor(i)
+            // span.innerHTML = String(turnaround_time[i])
             setTimeout(() => {
                 chart_row.appendChild(td)
             }, i * 800)
