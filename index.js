@@ -450,7 +450,8 @@ const PriorityScheduling_nonPreemptive = function () {
         const chart_row = document.querySelector('.chart-row-nppm')
         for (let i = 0; i < len; i++) {
             const td = document.createElement('td')
-            td.innerHTML = String.fromCharCode(65 + i)
+            // td.innerHTML = String.fromCharCode(65 + i)
+            td.innerHTML = `${String.fromCharCode(65 + i)} till ${i === turnaround_time.length - 1 ? finish_time[i] : turnaround_time[i + 1]}`
             td.style.width = String(times_burst[i] * 50) + "px";
             td.style.backgroundColor = getRandomColor(i)
             setTimeout(() => {
@@ -497,6 +498,9 @@ const PriorityScheduling_Preemptive = function () {
     let times_arival = []
     let times_priority = []
     let times_burst = []
+    let finish_time = []
+    let turnaround_time = []
+    let waiting_time = []
     run.addEventListener('click', () => {
         times_arival = arivalTimeInput.value.trim().split(" ").filter((str) => (
             str !== ""
@@ -702,9 +706,6 @@ const PriorityScheduling_Preemptive = function () {
 
         times_arival = []
         times_burst = []
-        let finish_time = []
-        let turnaround_time = []
-        let waiting_time = []
         times_arival = solvedtimeInfo.map(item => (
             item.at
         ))
@@ -778,7 +779,8 @@ const PriorityScheduling_Preemptive = function () {
         const chart_row = document.querySelector('.chart-row-ppm')
         for (let i = 0; i < len; i++) {
             const td = document.createElement('td')
-            td.innerHTML = String.fromCharCode(65 + i)
+            // td.innerHTML = String.fromCharCode(65 + i)
+            td.innerHTML = `${String.fromCharCode(65 + i)} till ${i === turnaround_time.length - 1 ? finish_time[i] : turnaround_time[i + 1]}`
             td.style.width = String(times_burst[i] * 50) + "px";
             td.style.backgroundColor = getRandomColor(i)
             setTimeout(() => {
