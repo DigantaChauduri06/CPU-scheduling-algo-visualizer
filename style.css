@@ -413,6 +413,13 @@ input {
 /* Media query */
 /* smartphones, iPhone, portrait 480x320 phones */
 @media (max-width: 481px) {
+  .table-chart,
+  .table-chart-ppm,
+  .table-chart-nppm {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 25px;
+  }
   body {
     overflow-x: hidden;
   }
